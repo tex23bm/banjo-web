@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+.pretty {
+    font-family: 'Sacramento', cursive;
+}
+
+.styled {
+    font-family: 'Josefin Slab', serif;
+}
+
+.readable {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+body {
+    font-family: 'Josefin Slab', serif;
+    background-color: #b6c5cc;
+}
+
+.center {
+    text-align:center;
+}
