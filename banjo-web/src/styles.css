@@ -12,11 +12,25 @@
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-body {
+body, html{
     font-family: 'Josefin Slab', serif;
+    background-color: #b6c5cc;
+    color: black;
+}
+
+.primary-color{
     background-color: #b6c5cc;
 }
 
 .center {
     text-align:center;
 }
+
+h1 {
+ font-size: 3em;
+ font-weight: bolder;
+}
+
+h2 {
+    font-size: 2em;
+   }
