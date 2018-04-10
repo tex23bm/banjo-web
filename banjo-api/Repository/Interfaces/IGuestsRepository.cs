@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Entity;
 
 namespace Repository.Interfaces
 {
     public interface IGuestsRepository
     {
-        IEnumerable<Guest> GetAll();
+        Task<IEnumerable<Guest>>GetAll();
     }
 }

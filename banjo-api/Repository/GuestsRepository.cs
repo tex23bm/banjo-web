@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Entity;
 using Repository.Contexts;
 using Repository.Interfaces;
@@ -17,9 +18,9 @@ namespace Repository
             _banjoContext = banjoContext;
         }
 
-        public IEnumerable<Guest> GetAll()
+        public async Task<IEnumerable<Guest>> GetAll()
         {
-            return _banjoContext.Guests.ToList();
+            return await Task.Run(()=> _banjoContext.Guests.ToList());
         }
     }
 }

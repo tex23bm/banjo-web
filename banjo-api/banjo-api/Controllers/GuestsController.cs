@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using banjo_api.Configurations;
+using banjo_api.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -26,7 +28,8 @@ namespace banjo_api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetGuests()
         {
-            var guestsList = _guestsRepository.GetAll().ToList();
+            var guestTask = await _guestsRepository.GetAll();
+            var guestsList = guestTask.Select(Mapper.Map<GuestDto>).ToList();
 
             return Ok(guestsList);
         }

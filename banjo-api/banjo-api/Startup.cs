@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using banjo_api.Configurations;
+using banjo_api.Models;
+using Entity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -33,13 +35,22 @@ namespace banjo_api
             services.AddOptions();
 
             string banjoConnectionString = Configuration.GetConnectionString("banjo");
-
             services.AddDbContext<BanjoContext>(o => o.UseSqlServer(banjoConnectionString));
 
             var section = Configuration.GetSection("CustomConfigSection");
             services.Configure<CustomConfigurations>(section);
 
             services.AddScoped<IGuestsRepository, GuestsRepository>();
+
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<GuestDto, Guest>()
+                    .ForMember(dest=>dest.CreatedDateTime, opt=>opt.Ignore())
+                    .ForMember(dest=>dest.DeletedDateTime, opt=>opt.Ignore());
+                cfg.CreateMap<Guest, GuestDto>();
+            });
+
+            Mapper.AssertConfigurationIsValid();
 
         }
 
