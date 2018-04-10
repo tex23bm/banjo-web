@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using banjo_api.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Repository;
+using Repository.Contexts;
+using Repository.Interfaces;
 
 namespace banjo_api
 {
@@ -27,8 +32,14 @@ namespace banjo_api
             services.AddMvc();
             services.AddOptions();
 
+            string banjoConnectionString = Configuration.GetConnectionString("banjo");
+
+            services.AddDbContext<BanjoContext>(o => o.UseSqlServer(banjoConnectionString));
+
             var section = Configuration.GetSection("CustomConfigSection");
             services.Configure<CustomConfigurations>(section);
+
+            services.AddScoped<IGuestsRepository, GuestsRepository>();
 
         }
 

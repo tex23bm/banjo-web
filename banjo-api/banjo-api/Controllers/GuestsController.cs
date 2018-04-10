@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Repository.Interfaces;
 
 namespace banjo_api.Controllers
 {
@@ -14,22 +15,20 @@ namespace banjo_api.Controllers
     [Route("api/Guests")]
     public class GuestsController : Controller
     {
-        public GuestsController(IConfiguration configuration, IOptions<CustomConfigurations> customOptions)
+        private readonly IGuestsRepository _guestsRepository;
+
+        public GuestsController(IGuestsRepository guestsRepository)
         {
-            var something = configuration.GetConnectionString("something");
+            _guestsRepository = guestsRepository;
         }
 
         [Route("")]
         [HttpGet]
         public async Task<IActionResult> GetGuests()
         {
-            var guests = new
-            {
-                name = "something",
-                value = "value"
-            };
+            var guestsList = _guestsRepository.GetAll().ToList();
 
-            return Ok(guests);
+            return Ok(guestsList);
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿CREATE TABLE [dbo].[Guests]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT IDENTITY(1,1) PRIMARY KEY, 
     [Name] VARCHAR(50) NOT NULL, 
     [Partner] VARCHAR(50) NULL, 
     [TotalGuestsAllowed] INT NOT NULL DEFAULT 1, 
     [ConfirmedGuests] INT NULL, 
-    [ModifiedDate] DATETIME NOT NULL DEFAULT GETDATE()
+    [CreatedDateTime] DATETIME NOT NULL DEFAULT GETDATE(),
+    [DeletedDateTime] DATETIME NULL,
+    [ModifiedDateTime] DATETIME NOT NULL DEFAULT GETDATE()
 )
