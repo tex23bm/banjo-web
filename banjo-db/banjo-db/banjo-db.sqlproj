@@ -62,9 +62,6 @@
     <Build Include="Guests.sql" />
   </ItemGroup>
   <ItemGroup>
-    <RefactorLog Include="banjo-db.refactorlog" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="banjo-db.publish.xml" />
   </ItemGroup>
 </Project>
