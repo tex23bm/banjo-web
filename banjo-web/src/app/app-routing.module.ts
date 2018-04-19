@@ -23,6 +23,6 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes, {useHash: true}) ],
+    RouterModule.forRoot(routes) ],
 })
 export class AppRoutingModule { }
