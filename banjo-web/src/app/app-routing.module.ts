@@ -9,11 +9,10 @@ import { VenueComponent } from './venue/venue.component';
 import { StoryComponent } from './story/story.component';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
   { path: 'our-story', component: StoryComponent },
   { path: 'venue', component: VenueComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: '/dashboard'}
+  { path: '', component: DashboardComponent, pathMatch: 'full' },
+  { path: '**', redirectTo: '/'}
 ];
 
 @NgModule({
@@ -23,6 +22,6 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes, {enableTracing: true}) ],
+    RouterModule.forRoot(routes) ],
 })
 export class AppRoutingModule { }
