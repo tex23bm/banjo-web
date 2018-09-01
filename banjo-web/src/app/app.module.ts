@@ -10,6 +10,7 @@ import { VenueComponent } from './venue/venue.component';
 import { StoryComponent } from './story/story.component';
 import { MenuComponent } from './menu/menu.component';
 import { WeddingPartyComponent } from './wedding-party/wedding-party.component';
+import { WeddingPartyMemberComponent } from './wedding-party/wedding-party-member/wedding-party-member.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { WeddingPartyComponent } from './wedding-party/wedding-party.component';
     VenueComponent,
     StoryComponent,
     MenuComponent,
-    WeddingPartyComponent
+    WeddingPartyComponent,
+    WeddingPartyMemberComponent
   ],
   imports: [
     BrowserModule,

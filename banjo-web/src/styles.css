@@ -26,6 +26,19 @@ body, html{
     text-align:center;
 }
 
+.img-portrait {
+    border-radius: 25%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: auto;
+}
+
+ul {
+    list-style: none;
+}
+
 h1 {
  font-size: 3em;
  font-weight: bolder;
@@ -40,11 +53,4 @@ h3 {
     font-size: 1.5em;
    }
 
-.img-portrait {
-    border-radius: 25%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 200px;
-    height: auto;
-}
+

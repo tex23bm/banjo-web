@@ -1,23 +1,30 @@
-<p>
-  wedding-party works!
-</p>
-
-<div>
-  <p>
-    Wedding Party!
-  </p>
+<div class="center">
+  <h2>Wedding Party!</h2>
 
   <div>
-      Groomsmen
+    <h3>Pastor</h3>
+  </div>
+  
+  <app-wedding-party-member [model]="pastor"></app-wedding-party-member>
+
+  <div>
+    <h3>Groomsmen</h3>
+  </div>
+  
+  <ul>
+    <li *ngFor="let member of groomsmen">
+      <app-wedding-party-member [model]="member"></app-wedding-party-member>
+    </li>
+  </ul>
+
+  <div>
+      <h3>Bridesmaids</h3>
     </div>
     
-    <div>
-      <img class="img-portrait" alt="Cute pic amirite?" src="https://karber-dev.azureedge.net/wedding-party/jordan.jpg">
-      <div>
-        <p>
-          Jordan Pratt
-        </p>
-      </div>
-    </div>
+    <ul>
+      <li *ngFor="let member of bridesmaids">
+        <app-wedding-party-member [model]="member"></app-wedding-party-member>
+      </li>
+    </ul>
 </div>
 
