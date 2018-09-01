@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { VenueComponent } from './venue/venue.component';
 import { StoryComponent } from './story/story.component';
 import { MenuComponent } from './menu/menu.component';
+import { WeddingPartyComponent } from './wedding-party/wedding-party.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MenuComponent } from './menu/menu.component';
     DashboardComponent,
     VenueComponent,
     StoryComponent,
-    MenuComponent
+    MenuComponent,
+    WeddingPartyComponent
   ],
   imports: [
     BrowserModule,
