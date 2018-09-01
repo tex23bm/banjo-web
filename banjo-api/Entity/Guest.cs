@@ -28,8 +28,11 @@ namespace Entity
 
         public int? ConfirmedGuests { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CreatedDateTime { get; set; }
         public DateTime? DeletedDateTime { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime ModifiedDateTime { get; set; }
 
     }

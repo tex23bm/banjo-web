@@ -22,5 +22,11 @@ namespace Repository
         {
             return await Task.Run(()=> _banjoContext.Guests.ToList());
         }
+
+        public async Task Add(IEnumerable<Guest> guests)
+        {
+            await _banjoContext.Guests.AddRangeAsync(guests);
+            await _banjoContext.SaveChangesAsync();
+        }
     }
 }
