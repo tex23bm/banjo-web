@@ -12,10 +12,11 @@
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-body, html{
-    font-family: 'Josefin Slab', serif;
-    background-color: #b6c5cc;
-    color: black;
+.flex-row {
+    display:flex;
+}
+.flex-column-2 {
+    flex:50%;
 }
 
 .primary-color{
@@ -26,6 +27,25 @@ body, html{
     text-align:center;
 }
 
+.img-portrait {
+    border-radius: 25%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: auto;
+}
+
+body, html{
+    font-family: 'Josefin Slab', serif;
+    background-color: #b6c5cc;
+    color: black;
+}
+
+ul {
+    list-style: none;
+}
+
 h1 {
  font-size: 3em;
  font-weight: bolder;
@@ -33,9 +53,14 @@ h1 {
 
 h2 {
     font-size: 2em;
-   }
-
+    font-weight: bold;
+}
    
 h3 {
     font-size: 1.5em;
-   }
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1.5em;
+}
