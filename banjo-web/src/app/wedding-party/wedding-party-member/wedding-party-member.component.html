@@ -1,8 +1,8 @@
 <div>
   <img class="img-portrait" alt="Cute pic amirite?" [src]="model.imagePath">
   <div>
-    <p>
-      {{model.name}}
-    </p>
+  <h3>{{model.name}}</h3>
+  <div *ngIf="model.title">{{model.title}}</div>
+
   </div>
 </div>
