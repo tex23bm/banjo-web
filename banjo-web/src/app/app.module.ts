@@ -11,6 +11,8 @@ import { StoryComponent } from './story/story.component';
 import { MenuComponent } from './menu/menu.component';
 import { WeddingPartyComponent } from './wedding-party/wedding-party.component';
 import { WeddingPartyMemberComponent } from './wedding-party/wedding-party-member/wedding-party-member.component';
+import { RegistryComponent } from './registry/registry.component';
+import { VendorsComponent } from './vendors/vendors.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { WeddingPartyMemberComponent } from './wedding-party/wedding-party-membe
     StoryComponent,
     MenuComponent,
     WeddingPartyComponent,
-    WeddingPartyMemberComponent
+    WeddingPartyMemberComponent,
+    RegistryComponent,
+    VendorsComponent
   ],
   imports: [
     BrowserModule,

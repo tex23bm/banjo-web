@@ -8,11 +8,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { VenueComponent } from './venue/venue.component';
 import { StoryComponent } from './story/story.component';
 import { WeddingPartyComponent } from './wedding-party/wedding-party.component';
+import { RegistryComponent } from './registry/registry.component';
 
 const routes: Routes = [
   { path: 'our-story', component: StoryComponent },
   { path: 'wedding-party', component: WeddingPartyComponent},
-  { path: 'venue', component: VenueComponent },
+  { path: 'details', component: VenueComponent },
+  { path: 'registry', component: RegistryComponent },
   { path: '', component: DashboardComponent, pathMatch: 'full' },
   { path: '**', redirectTo: '/'}
 ];
