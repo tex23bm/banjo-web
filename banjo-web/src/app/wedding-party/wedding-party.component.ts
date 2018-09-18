@@ -12,7 +12,7 @@ export class WeddingPartyComponent implements OnInit {
   { 'name': 'Alec Kemp', 'imagePath': 'wedding-party/alec.jpg', 'altText': 'Alec', 'title': 'Level 45 Warlock'};
 
   groomsmen: WeddingPartyMemberModel[] = [
-    { 'name': 'Chambers', 'imagePath': 'wedding-party/chambers.jpg', 'altText': 'Baby Giraffe', 'title': 'Best Man' },
+    { 'name': 'Chambers', 'imagePath': 'wedding-party/chambers.jpg', 'altText': 'Baby Giraffe', 'title': 'Lord of the Rings' },
     { 'name': 'David Christenson', 'imagePath': 'wedding-party/david.jpg', 'altText': 'David', 'title': null },
     { 'name': 'Jordan Pratt', 'imagePath': 'wedding-party/jordan.jpg', 'altText': 'Jordan', 'title': null },
     { 'name': 'Shawn Sewall', 'imagePath': 'wedding-party/shawn.jpg', 'altText': 'Shawn', 'title': null },
