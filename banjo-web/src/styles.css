@@ -1,1 +1,66 @@
 /* You can add global styles to this file, and also import other style files */
+
+.pretty {
+    font-family: 'Sacramento', cursive;
+}
+
+.styled {
+    font-family: 'Josefin Slab', serif;
+}
+
+.readable {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.flex-row {
+    display:flex;
+}
+.flex-column-2 {
+    flex:50%;
+}
+
+.primary-color{
+    background-color: #b6c5cc;
+}
+
+.center {
+    text-align:center;
+}
+
+.img-portrait {
+    border-radius: 25%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: auto;
+}
+
+body, html{
+    font-family: 'Josefin Slab', serif;
+    background-color: #b6c5cc;
+    color: black;
+}
+
+ul {
+    list-style: none;
+}
+
+h1 {
+ font-size: 3em;
+ font-weight: bolder;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: bold;
+}
+   
+h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1.5em;
+}

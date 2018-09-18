@@ -1,0 +1,43 @@
+<div class="center">
+  <h2>Wedding Party!</h2>
+
+  <div>
+    <h2>Officiant</h2>
+  </div>
+  
+  <app-wedding-party-member [model]="pastor"></app-wedding-party-member>
+
+  <br/>
+  <br/>
+
+  <div class="flex-row">
+      <div class="flex-column-2">
+          <div>
+              <h2>Groomsmen</h2>
+            </div>
+            
+            <ul>
+              <li *ngFor="let member of groomsmen">
+                <app-wedding-party-member [model]="member"></app-wedding-party-member>
+                <br/>
+                <br/>
+              </li>
+            </ul>
+      </div>
+      <div class="flex-column-2">
+          <div>
+              <h2>Bridesmaids</h2>
+            </div>
+            
+            <ul>
+              <li *ngFor="let member of bridesmaids">
+                <app-wedding-party-member [model]="member"></app-wedding-party-member>
+                <br/>
+                <br/>
+              </li>
+            </ul>
+      </div>
+  </div>
+  
+</div>
+
