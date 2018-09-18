@@ -13,6 +13,9 @@ import { WeddingPartyComponent } from './wedding-party/wedding-party.component';
 import { WeddingPartyMemberComponent } from './wedding-party/wedding-party-member/wedding-party-member.component';
 import { RegistryComponent } from './registry/registry.component';
 import { VendorsComponent } from './vendors/vendors.component';
+import { ResponseComponent } from './response/response.component';
+import { RsvpComponent } from './rsvp/rsvp.component';
+import { DetailsComponent } from './details/details.component';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { VendorsComponent } from './vendors/vendors.component';
     WeddingPartyComponent,
     WeddingPartyMemberComponent,
     RegistryComponent,
-    VendorsComponent
+    VendorsComponent,
+    ResponseComponent,
+    RsvpComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -5,16 +5,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { VenueComponent } from './venue/venue.component';
 import { StoryComponent } from './story/story.component';
 import { WeddingPartyComponent } from './wedding-party/wedding-party.component';
-import { RegistryComponent } from './registry/registry.component';
+import { DetailsComponent } from './details/details.component';
+import { ResponseComponent } from './response/response.component';
 
 const routes: Routes = [
   { path: 'our-story', component: StoryComponent },
   { path: 'wedding-party', component: WeddingPartyComponent},
-  { path: 'details', component: VenueComponent },
-  { path: 'registry', component: RegistryComponent },
+  { path: 'details', component: DetailsComponent },
+  { path: 'rsvp', component: ResponseComponent },
   { path: '', component: DashboardComponent, pathMatch: 'full' },
   { path: '**', redirectTo: '/'}
 ];
