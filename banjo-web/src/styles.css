@@ -94,3 +94,11 @@ th, tr, td {
     height: auto;
     overflow: hidden;
 }
+
+@media only screen and (max-width: 500px){
+    
+
+    th, td {
+        display: table-row;
+    }
+}
