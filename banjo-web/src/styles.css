@@ -95,10 +95,32 @@ th, tr, td {
     overflow: hidden;
 }
 
+iframe.google-map-iframe {
+    width: 600px;
+    height: 400px;
+    border:0;
+}
+
+@media only screen and (max-width: 600px){
+    iframe.google-map-iframe {
+        width:100%;
+    }
+}
+
 @media only screen and (max-width: 500px){
-    
+    .item-card{
+        width:100%;
+    }
 
     th, td {
         display: table-row;
     }
+}
+
+@media only screen and (max-width:450px){
+
+.img-portrait {
+    width: 40%;
+}
+
 }
