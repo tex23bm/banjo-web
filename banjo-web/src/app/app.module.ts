@@ -16,6 +16,7 @@ import { VendorsComponent } from './vendors/vendors.component';
 import { ResponseComponent } from './response/response.component';
 import { RsvpComponent } from './rsvp/rsvp.component';
 import { DetailsComponent } from './details/details.component';
+import { AccomodationsComponent } from './accomodations/accomodations.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { DetailsComponent } from './details/details.component';
     VendorsComponent,
     ResponseComponent,
     RsvpComponent,
-    DetailsComponent
+    DetailsComponent,
+    AccomodationsComponent
   ],
   imports: [
     BrowserModule,
