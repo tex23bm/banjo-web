@@ -55,6 +55,7 @@ namespace import
                 IRow row = sheet.GetRow(i);
                 if (row != null) //null is when the row only contains empty cells   
                 {
+                    //PrintGuest(row.ToEntity());
                     guestList.Add(row.ToEntity());
                 }
             }
@@ -65,6 +66,11 @@ namespace import
 
             Console.WriteLine("Finished, Cleaning up!");
 
+        }
+
+        private static void PrintGuest(Guest guest)
+        {
+            Console.WriteLine($"{guest.Name} | {guest.LastName} | {guest.Zipcode} | {guest.TotalGuestsAllowed}");
         }
     }
 }

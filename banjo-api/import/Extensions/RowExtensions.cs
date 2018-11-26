@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using Entity;
@@ -18,15 +19,74 @@ namespace import.Extensions
                 switch (cell.ColumnIndex)
                 {
                     case 0: guest.Name = cell.StringCellValue;
+                        guest.LastName = ParseLastName(guest.Name);
                         break;
                     case 1: guest.Partner = cell.StringCellValue;
                         break;
                     case 2: guest.TotalGuestsAllowed = (int) cell.NumericCellValue;
                         break;
+                    case 5: 
+                        guest.Address = cell.StringCellValue;
+                        guest.Zipcode = ParseZipCode(guest.Address);
+                        break;
                 }
             }
 
             return guest;
+        }
+
+        private static string ParseLastName(string lastName)
+        {
+            if(string.IsNullOrEmpty(lastName))
+            {
+                return null;
+            }
+
+            try
+            {
+                char[] seps = {' '};
+
+                string[] splits = lastName.Split(seps);
+
+                List<string> splitList = splits.ToList();
+
+                if(splitList.Last() == "III")
+                {
+                    return splitList[splitList.Count - 2];
+                }
+
+
+                return splitList.Last();
+            }
+            catch(Exception e)
+            {
+               Console.WriteLine(e.Message);
+            }
+
+            return null;
+        }
+
+        private static string ParseZipCode(string address)
+        {
+            if(string.IsNullOrEmpty(address))
+            {
+                return null;
+            }
+
+            try
+            {
+                char[] seps = {' '};
+
+                string[] splits = address.Split(seps);
+                
+                return splits.ToList().Last();
+            }
+            catch(Exception e)
+            {
+               Console.WriteLine(e.Message);
+            }
+
+            return null;
         }
     }
 }

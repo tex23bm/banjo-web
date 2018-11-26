@@ -23,6 +23,16 @@ namespace Entity
         [MaxLength(50)]
         public string Partner { get; set; }
 
+        [Required]
+        [MaxLength(50)]
+        public string LastName { get; set; }
+
+        [MaxLength(512)]
+        public string Address { get; set; }
+	    
+        [MaxLength(8)]
+        public string Zipcode { get; set; }
+
         [DefaultValue(1)]
         public int TotalGuestsAllowed { get; set; }
 
