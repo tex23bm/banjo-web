@@ -8,6 +8,9 @@ namespace Repository.Interfaces
 {
     public interface IGuestsRepository
     {
-        Task<IEnumerable<Guest>>GetAll();
+        Task<IEnumerable<Guest>>GetAll(string lastName, string zipCode);
+        Task<Guest> Get(int id);
+        Task Update(Guest guest);
+        Task Add(IEnumerable<Guest> guests);
     }
 }
