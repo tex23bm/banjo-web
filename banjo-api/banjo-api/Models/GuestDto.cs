@@ -13,6 +13,12 @@ namespace banjo_api.Models
 
         public string Partner { get; set; }
 
+        public string LastName { get; set; }
+
+        public string Address { get; set; }
+
+        public string Zipcode { get; set; }
+
         public int TotalGuestsAllowed { get; set; }
 
         public int? ConfirmedGuests { get; set; }
