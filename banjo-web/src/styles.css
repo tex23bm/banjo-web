@@ -95,6 +95,25 @@ th, tr, td {
     overflow: hidden;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input, button {
+    margin: .5em;
+    border-radius: .5em;
+    border-style: none;
+    padding: .5em;    
+}
+
+button:hover {
+    background-color: #E6E5Ec;
+    cursor: pointer
+}
+
 iframe.google-map-iframe {
     width: 600px;
     height: 400px;
