@@ -26,12 +26,44 @@ namespace banjo_api.Controllers
 
         [Route("")]
         [HttpGet]
-        public async Task<IActionResult> GetGuests()
+        public async Task<IActionResult> GetGuests(string lastname, string zipcode)
         {
-            var guestTask = await _guestsRepository.GetAll();
+            var guestTask = await _guestsRepository.GetAll(lastname, zipcode);
             var guestsList = guestTask.Select(Mapper.Map<GuestDto>).ToList();
 
             return Ok(guestsList);
+        }
+
+        [Route("{id}")]
+        [HttpPut]
+        public async Task<IActionResult> UpdateGuest(int id, [FromBody] GuestDto guest)
+        {
+            try
+            {
+                if(id != guest.Id)
+                {
+                    return BadRequest("Id to update does not match entity Id");
+                }
+
+                Entity.Guest entity = await _guestsRepository.Get(id); 
+
+                if(guest.ConfirmedGuests > entity.TotalGuestsAllowed)
+                {
+                    return BadRequest("Cannot have more guests than the maximum allowed for thie guest");
+                }
+
+                entity.ConfirmedGuests = guest.ConfirmedGuests;
+                entity.Partner = guest.Partner;
+
+                await _guestsRepository.Update(entity);
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+            
+            return Ok();
         }
     }
 }
