@@ -1,29 +1,40 @@
 <div class="item-card border-black-rounded center">
   <h2>RSVP</h2>
 
-  <div *ngIf="possibleMatches === null && matchedResult === null">
+  <div *ngIf="possibleMatches === null && matchedResult === null"
+    (keyup.enter)="searchForInvitation(guestQuery)">
       <p>Please locate your invitation using your last name and zipcode.</p>
-      <p>(if we mailed it to you)</p>
+      <p>(if we mailed it to you)*</p>
     
     
       <input [(ngModel)]="guestQuery.LastName" type="text" placeholder="Last Name">
       <input [(ngModel)]="guestQuery.ZipCode" type="text" placeholder="Zipcode" maxlength="5">
-    
       <br/>
     
+      <div *ngIf="guestSearchMessage != null">
+        {{guestSearchMessage}}
+        <br/>
+      </div>
+    
       <button (click)="searchForInvitation(guestQuery)">Search</button>
+      <br/>
+
+      <div>*Although we love your little ones, this is an adult only affair</div>
   </div>
 
   <div *ngIf="possibleMatches!=null">
-    <div style="display: block;height: 2em;">
-      <div style="display: inline;">Here's some possible matches for your invitation, please click on your response </div>
+    <div style="display: block;height: 3em;">
+      <div style="display: inline-block; width:90%;">
+        <div style="display:block;">Here's some possible matches for your invitation, please click on your response</div>
+      </div>
       <i (click)="clearSearchResults()" style="float: right;margin-right: 1em;" class="fas fa-times"></i>
     </div>
     <ul style="display:block;">
       <li *ngFor="let match of possibleMatches">
         <div (click)="setMatchedResult(match)" >
             <div style="display:inline-block;">{{match.name}}</div>
-            <div style="display:inline-block;" *ngIf="match.partner != null"> & {{match.partner}}</div>
+            <div style="display:inline-block;" *ngIf="match.partner != null && match.partner !== ''"> & {{match.partner}}</div>
+            <div style="display:block" >{{match.address}}</div>
         </div>
       </li>
     </ul>
@@ -32,14 +43,28 @@
   <div *ngIf="matchedResult != null">
     <div style="display:block;height:2em;">
         <div style="display:inline-block;">{{matchedResult.name}}</div>
-        <div style="display:inline-block;" *ngIf="matchedResult.partner != null"> & {{matchedResult.partner}}</div>
+        <div style="display:inline-block;" *ngIf="matchedResult.partner !== null && matchedResult.partner !== ''"> & {{matchedResult.partner}}</div>
         <i (click)="clearMatchedResult()" style="float: right;margin-right: 1em;" class="fas fa-times"></i>
     </div>
-    <div>
-      Please Enter the Number of guests that will be attending
+    <div *ngIf="matchedResult.totalGuestsAllowed == 2">
+      Please verify your name and your guest's name (if you plan to bring one) for the table cards.
+    </div>
+    <div *ngIf="matchedResult.totalGuestsAllowed == 1">
+      Please verify your name for the table cards.
+    </div>
+    <div *ngIf="matchedResult.totalGuestsAllowed > 2">
+      Please verify your name and your guest's name for the table cards. We are aware of the additional guests and will reach out to you to verify.
     </div>
 
+    <!-- 
     <input [(ngModel)]="matchedResult.confirmedGuests" (change)="validateGuest(matchedResult)" type="number" min=0 max="10">
+    <div style="display:inline">(Max: {{matchedResult.totalGuestsAllowed}})</div> -->
+
+    <input [(ngModel)]="matchedResult.name" type="text" placeholder="Guest Name" 
+      (keyup.enter)="confirmInvitation(matchedResult)">
+    <input [(ngModel)]="matchedResult.partner" type="text" placeholder="Guest Partner" 
+      (keyup.enter)="confirmInvitation(matchedResult)" *ngIf="matchedResult.totalGuestsAllowed > 1">
+
     <br/>
     <div *ngIf="guestValidationMessage != null">
       {{guestValidationMessage}}
@@ -48,6 +73,9 @@
     <button (click)="confirmInvitation(matchedResult)"> Confirm </button>
     <button (click)="declineInvitation(matchedResult)"> Regretfully Decline </button>
 
+    <br/>
+
+    <div>*Although we love your little ones, this is an adult only affair</div>
   </div>
 
 </div>

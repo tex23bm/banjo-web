@@ -11,6 +11,10 @@ export class GuestService {
 
   private baseUrl = environment.apiUrl + '/guests';
 
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   constructor(
     private http: HttpClient,
   ) {
@@ -18,26 +22,16 @@ export class GuestService {
   }
 
   searchForGuests(query: GuestSearchQueryModel): Observable<GuestResponseModel[]> {
-    const guests: GuestResponseModel[] = [
-      { id: 1, name: 'Bill', partner: 'Onja', lastName: 'Meehan', address: '2211 Grapevine ln'
-        , zipcode: '75007', totalGuestsAllowed: 2, confirmedGuests: undefined, dateModified: new Date('12/30/2018') },
-      { id: 1, name: 'Manny', partner: null, lastName: 'Guzman', address: '42 Maynard Rd'
-        , zipcode: '75007', totalGuestsAllowed: 1, confirmedGuests: undefined, dateModified: new Date('12/31/2018') }
-    ];
-
     const url = this.buildGuestSearchUrl(query);
-
-    console.log(url);
-    // this.http.get<GuestResponseModel[]>(url);
-
-    return of(guests);
+    return this.http.get<GuestResponseModel[]>(url);
   }
 
-  updateGuest(guest: GuestResponseModel) {
-    alert('Saved guest: ' + guest.name + ' with ' + guest.confirmedGuests + ' guests confirmed' );
+  updateGuest(guest: GuestResponseModel): Observable<any> {
+    const url = `${this.baseUrl}/${guest.id}`;
+    return this.http.put(url, guest, this.httpOptions).pipe();
   }
 
-  private buildGuestSearchUrl(query: GuestSearchQueryModel): String {
+  private buildGuestSearchUrl(query: GuestSearchQueryModel): string {
     let url = this.baseUrl;
 
     if (query.ZipCode !== '' || query.LastName !== '') {
@@ -54,7 +48,6 @@ export class GuestService {
       if (query.LastName !== '') {
         url += `lastName=${query.LastName}`;
       }
-
     }
 
     return url;

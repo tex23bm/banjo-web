@@ -52,6 +52,7 @@ namespace banjo_api.Controllers
                     return BadRequest("Cannot have more guests than the maximum allowed for thie guest");
                 }
 
+                entity.Name = guest.Name;
                 entity.ConfirmedGuests = guest.ConfirmedGuests;
                 entity.Partner = guest.Partner;
 

@@ -19,6 +19,7 @@ export class RsvpComponent implements OnInit {
   possibleMatches: GuestResponseModel[] = null;
   matchedResult: GuestResponseModel = null;
   guestValidationMessage: String = null;
+  guestSearchMessage: String = null;
 
 
   constructor(
@@ -29,8 +30,32 @@ export class RsvpComponent implements OnInit {
   }
 
   searchForInvitation(query: GuestSearchQueryModel) {
+
+    this.guestSearchMessage = null;
+
+    if (query.ZipCode === '' && query.LastName === '') {
+      this.guestSearchMessage = 'Please enter a last name, or a last name & zip code';
+      return;
+    }
+
+    if (query.ZipCode !== '' && query.LastName === '') {
+      this.guestSearchMessage = 'Zip code requres last name in order to locate';
+      return;
+    }
+
     this.guestService.searchForGuests(query)
-      .subscribe(matches => this.possibleMatches = matches);
+      .subscribe(matches => {
+        this.possibleMatches = matches;
+        if (matches.length === 0) {
+          this.guestSearchMessage = 'Could not find any matches. Please try another query.';
+          this.possibleMatches = null;
+        }
+
+        if (matches.length === 1) {
+          this.possibleMatches = null;
+          this.matchedResult = matches[0];
+        }
+      });
 
     if (this.possibleMatches != null && this.possibleMatches.length === 1) {
       this.setMatchedResult(this.possibleMatches[0]);
@@ -54,11 +79,12 @@ export class RsvpComponent implements OnInit {
   declineInvitation(guest: GuestResponseModel) {
     guest.confirmedGuests = 0;
 
-    this.confirmInvitation(guest);
+    this.guestService.updateGuest(guest).subscribe();
+    this.clearMatchedResult();
   }
 
   validateGuest(guest: GuestResponseModel) {
-    if (guest.confirmedGuests == null || guest.confirmedGuests > guest.totalGuestsAllowed) {
+    if (guest.confirmedGuests !== null && guest.confirmedGuests > guest.totalGuestsAllowed) {
       this.guestValidationMessage = 'Sorry, but you have exceeded the total number of allowed guests ('
       + this.matchedResult.totalGuestsAllowed + ').';
 
@@ -75,9 +101,18 @@ export class RsvpComponent implements OnInit {
       return;
     }
 
-    this.guestService.updateGuest(guest);
+    guest.confirmedGuests = this.calculateConfirmedGuests(guest);
 
+    this.guestService.updateGuest(guest).subscribe();
     this.clearMatchedResult();
+  }
+
+  private calculateConfirmedGuests(guest: GuestResponseModel): Number {
+    if (guest.partner !== '' && guest.totalGuestsAllowed > 1) {
+      return guest.totalGuestsAllowed > 2 ? guest.totalGuestsAllowed : 2;
+    }
+
+    return 1;
   }
 
 }

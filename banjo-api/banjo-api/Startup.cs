@@ -33,6 +33,7 @@ namespace banjo_api
         {
             services.AddMvc();
             services.AddOptions();
+            services.AddCors();
 
             string banjoConnectionString = Configuration.GetConnectionString("banjo");
             services.AddDbContext<BanjoContext>(o => o.UseSqlServer(banjoConnectionString));
@@ -62,6 +63,15 @@ namespace banjo_api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(builder =>
+            {
+                builder.WithOrigins("http://localhost:4200")
+                    .AllowAnyHeader().AllowAnyMethod();
+                builder.WithOrigins("http://banjo-wedding.com/")
+                    .AllowAnyHeader().AllowAnyMethod();
+
+            });
+                
             app.UseMvc();
         }
     }
