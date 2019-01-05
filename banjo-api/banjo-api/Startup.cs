@@ -42,6 +42,7 @@ namespace banjo_api
             services.Configure<CustomConfigurations>(section);
 
             services.AddScoped<IGuestsRepository, GuestsRepository>();
+            services.AddScoped<ICommentsRepository, CommentsRepository>();
 
             Mapper.Initialize(cfg =>
             {
@@ -49,6 +50,13 @@ namespace banjo_api
                     .ForMember(dest=>dest.CreatedDateTime, opt=>opt.Ignore())
                     .ForMember(dest=>dest.DeletedDateTime, opt=>opt.Ignore());
                 cfg.CreateMap<Guest, GuestDto>();
+                
+                cfg.CreateMap<CommentDto, Comment>()
+                    .ForMember(dest=>dest.Approved, opt=>opt.Ignore())
+                    .ForMember(dest=>dest.CreatedDateTime, opt=>opt.Ignore())
+                    .ForMember(dest=>dest.DeletedDateTime, opt=>opt.Ignore());
+                cfg.CreateMap<Comment, CommentDto>();
+             
             });
 
             Mapper.AssertConfigurationIsValid();
