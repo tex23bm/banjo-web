@@ -11,5 +11,7 @@ namespace Repository.Contexts
         public BanjoContext(DbContextOptions<BanjoContext> options) : base(options) { }
 
         public DbSet<Guest> Guests { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
     }
 }

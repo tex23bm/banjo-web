@@ -60,8 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Guests.sql" />
+    <Build Include="Comments.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="banjo-db.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="banjo-db.refactorlog" />
   </ItemGroup>
 </Project>
