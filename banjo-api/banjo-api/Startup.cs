@@ -75,7 +75,7 @@ namespace banjo_api
             {
                 builder.WithOrigins("http://localhost:4200")
                     .AllowAnyHeader().AllowAnyMethod();
-                builder.WithOrigins("http://banjo-wedding.com/")
+                builder.WithOrigins("http://banjo-wedding.com")
                     .AllowAnyHeader().AllowAnyMethod();
 
             });
