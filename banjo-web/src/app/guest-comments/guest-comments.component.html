@@ -1,0 +1,36 @@
+<div class="item-card border-black-rounded center">
+  <h2>Notes</h2>
+
+  <div>
+    <p>Leave a note for the bride and groom!</p>
+  </div>
+
+  <div>
+    <div>
+      <h3 style="display:inline-block" >From</h3>
+      <input [(ngModel)]="comment.addedBy" type="text" style="display:inline-block">
+    </div>
+    <div>
+      <h3>Comment</h3>
+      <textarea [(ngModel)]="comment.comments" rows="10" style="width:70%; border-radius: .5em; padding: .5em;"></textarea>
+    </div>
+    <button (click)="addComment(comment)" >Submit</button>
+  </div>
+
+  <br />
+
+  <div *ngIf="showComments && comments.length > 0">
+    <h3>Comments</h3>
+
+    <ul>
+      <li *ngFor="let c of comments">
+        <div>
+          <h4>{{c.addedBy}}</h4>
+          <p>{{c.comments}}</p>
+        </div>
+        <br/>
+      </li>
+    </ul>
+
+  </div>
+</div>

@@ -44,13 +44,14 @@ namespace import.Extensions
 
             try
             {
+                lastName = lastName.Trim();
                 char[] seps = {' '};
 
                 string[] splits = lastName.Split(seps);
 
                 List<string> splitList = splits.ToList();
 
-                if(splitList.Last() == "III")
+                if(splitList.Last() == "III" || splitList.Last() == "Jr")
                 {
                     return splitList[splitList.Count - 2];
                 }

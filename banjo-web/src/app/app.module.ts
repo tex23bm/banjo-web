@@ -18,6 +18,7 @@ import { ResponseComponent } from './response/response.component';
 import { RsvpComponent } from './rsvp/rsvp.component';
 import { DetailsComponent } from './details/details.component';
 import { AccomodationsComponent } from './accomodations/accomodations.component';
+import { GuestCommentsComponent } from './guest-comments/guest-comments.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { AccomodationsComponent } from './accomodations/accomodations.component'
     ResponseComponent,
     RsvpComponent,
     DetailsComponent,
-    AccomodationsComponent
+    AccomodationsComponent,
+    GuestCommentsComponent
   ],
   imports: [
     BrowserModule,
