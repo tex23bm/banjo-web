@@ -21,6 +21,9 @@ export class RsvpComponent implements OnInit {
   guestValidationMessage: String = null;
   guestSearchMessage: String = null;
 
+  hardilekTrap: Boolean = false;
+  showHardilekTrap: Boolean = false;
+  hardilekMessage: String = 'Sorry Jamie, your invitation has been rejected. This is for making me stay up til 2AM so YOU could rsvp now';
 
   constructor(
     private guestService: GuestService
@@ -43,6 +46,10 @@ export class RsvpComponent implements OnInit {
       return;
     }
 
+    if (query.LastName === 'Hardilek' || query.LastName === 'hardilek') {
+      this.hardilekTrap = true;
+    }
+
     this.guestService.searchForGuests(query)
       .subscribe(matches => {
         this.possibleMatches = matches;
@@ -63,12 +70,17 @@ export class RsvpComponent implements OnInit {
 
   }
 
+  clearSearchQuery() {
+    this.guestQuery = new GuestSearchQueryModel();
+  }
+
   clearSearchResults() {
     this.possibleMatches = null;
   }
 
   setMatchedResult(match: GuestResponseModel) {
-    this.possibleMatches = null;
+    this.clearSearchQuery();
+    this.clearSearchResults();
     this.matchedResult = match;
   }
 
@@ -105,6 +117,10 @@ export class RsvpComponent implements OnInit {
 
     this.guestService.updateGuest(guest).subscribe();
     this.clearMatchedResult();
+
+    if (this.hardilekTrap) {
+      this.showHardilekTrap = true;
+    }
   }
 
   private calculateConfirmedGuests(guest: GuestResponseModel): Number {

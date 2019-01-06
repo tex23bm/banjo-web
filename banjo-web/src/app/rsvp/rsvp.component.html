@@ -1,7 +1,7 @@
 <div class="item-card border-black-rounded center">
   <h2>RSVP</h2>
 
-  <div *ngIf="possibleMatches === null && matchedResult === null"
+  <div *ngIf="possibleMatches === null && matchedResult === null && !showHardilekTrap"
     (keyup.enter)="searchForInvitation(guestQuery)">
       <p>Please locate your invitation using your last name and zipcode.</p>
       <p>(if we mailed it to you)*</p>
@@ -76,6 +76,10 @@
     <br/>
 
     <div>*Although we love your little ones, this is an adult only affair</div>
+  </div>
+
+  <div *ngIf="showHardilekTrap">
+    <h3>{{hardilekMessage}}</h3>
   </div>
 
 </div>
