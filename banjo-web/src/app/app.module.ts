@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { ResponseComponent } from './response/response.component';
 import { RsvpComponent } from './rsvp/rsvp.component';
 import { DetailsComponent } from './details/details.component';
 import { AccomodationsComponent } from './accomodations/accomodations.component';
+import { GuestCommentsComponent } from './guest-comments/guest-comments.component';
 
 
 @NgModule({
@@ -33,12 +35,14 @@ import { AccomodationsComponent } from './accomodations/accomodations.component'
     ResponseComponent,
     RsvpComponent,
     DetailsComponent,
-    AccomodationsComponent
+    AccomodationsComponent,
+    GuestCommentsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

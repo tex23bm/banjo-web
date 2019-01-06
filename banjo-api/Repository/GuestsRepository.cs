@@ -23,8 +23,8 @@ namespace Repository
             return await Task.Run(()=> {
                 return _banjoContext.Guests
                     .Where(guest=>
-                        (string.IsNullOrEmpty(lastName) || guest.LastName.ToLower().Contains(lastName.ToLower()))
-                        && (string.IsNullOrEmpty(zipCode) || guest.Zipcode.Equals(zipCode,StringComparison.CurrentCultureIgnoreCase))
+                        (string.IsNullOrEmpty(lastName) || ((!string.IsNullOrEmpty(guest.LastName)) && guest.LastName.ToLower().Contains(lastName.ToLower())))
+                        && (string.IsNullOrEmpty(zipCode) || ((!string.IsNullOrEmpty(guest.Zipcode)) && guest.Zipcode.Equals(zipCode,StringComparison.CurrentCultureIgnoreCase)))
                     )
                     .ToList();
                 });

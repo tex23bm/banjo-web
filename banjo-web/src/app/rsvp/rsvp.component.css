@@ -1,0 +1,7 @@
+li {
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    padding: .5em;
+    margin: .3em;
+}

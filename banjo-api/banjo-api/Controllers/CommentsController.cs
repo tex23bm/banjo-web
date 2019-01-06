@@ -42,8 +42,13 @@ namespace banjo_api.Controllers
         {
             try
             {
-                comment.ModifiedDateTime = DateTime.UtcNow;
                 Comment entity = Mapper.Map<Comment>(comment);
+                
+                DateTime now = DateTime.UtcNow;
+
+                entity.CreatedDateTime = now;
+                entity.ModifiedDateTime = now;
+                entity.Approved = true;
 
                 await _commentsRepository.AddComment(entity);
                 await _commentsRepository.SaveChanges();

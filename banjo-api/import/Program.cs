@@ -28,6 +28,8 @@ namespace import
 
             string banjoConnectionString = Configuration.GetConnectionString("banjo");
 
+            Console.WriteLine(banjoConnectionString);
+
             var optionsBuilder = new DbContextOptionsBuilder<BanjoContext>();
             optionsBuilder.UseSqlServer(banjoConnectionString);
 
