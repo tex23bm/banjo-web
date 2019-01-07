@@ -3,6 +3,8 @@ import { GuestService } from '../services/guest.service';
 import { GuestSearchQueryModel } from '../data/guest-search-query-model';
 import { queryRefresh } from '@angular/core/src/render3/query';
 import { GuestResponseModel } from '../data/guest-response-model';
+import { RsvpStages } from '../data/constants/rsvp-stages.enum';
+import { Type } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-rsvp',
@@ -21,9 +23,8 @@ export class RsvpComponent implements OnInit {
   guestValidationMessage: String = null;
   guestSearchMessage: String = null;
 
-  hardilekTrap: Boolean = false;
-  showHardilekTrap: Boolean = false;
-  hardilekMessage: String = 'Sorry Jamie, your invitation has been rejected. This is for making me stay up til 2AM so YOU could rsvp now';
+  rsvpStages: any = RsvpStages;
+  currentStage: RsvpStages = RsvpStages.Search;
 
   constructor(
     private guestService: GuestService
@@ -32,22 +33,26 @@ export class RsvpComponent implements OnInit {
   ngOnInit() {
   }
 
-  searchForInvitation(query: GuestSearchQueryModel) {
-
+  private validateGuestSearch(query: GuestSearchQueryModel): Boolean {
     this.guestSearchMessage = null;
 
     if (query.ZipCode === '' && query.LastName === '') {
       this.guestSearchMessage = 'Please enter a last name, or a last name & zip code';
-      return;
+      return false;
     }
 
     if (query.ZipCode !== '' && query.LastName === '') {
       this.guestSearchMessage = 'Zip code requres last name in order to locate';
-      return;
+      return false;
     }
 
-    if (query.LastName === 'Hardilek' || query.LastName === 'hardilek') {
-      this.hardilekTrap = true;
+    return true;
+  }
+
+  searchForInvitation(query: GuestSearchQueryModel) {
+
+    if (!this.validateGuestSearch(query)) {
+      return;
     }
 
     this.guestService.searchForGuests(query)
@@ -58,16 +63,12 @@ export class RsvpComponent implements OnInit {
           this.possibleMatches = null;
         }
 
+        this.currentStage = RsvpStages.Select;
+
         if (matches.length === 1) {
-          this.possibleMatches = null;
-          this.matchedResult = matches[0];
+          this.setMatchedResult(matches[0]);
         }
       });
-
-    if (this.possibleMatches != null && this.possibleMatches.length === 1) {
-      this.setMatchedResult(this.possibleMatches[0]);
-    }
-
   }
 
   clearSearchQuery() {
@@ -76,22 +77,28 @@ export class RsvpComponent implements OnInit {
 
   clearSearchResults() {
     this.possibleMatches = null;
+    this.currentStage = RsvpStages.Search;
   }
 
   setMatchedResult(match: GuestResponseModel) {
     this.clearSearchQuery();
     this.clearSearchResults();
     this.matchedResult = match;
+    this.currentStage = RsvpStages.Respond;
   }
 
   clearMatchedResult() {
     this.matchedResult = null;
+    this.currentStage = RsvpStages.Search;
   }
 
   declineInvitation(guest: GuestResponseModel) {
     guest.confirmedGuests = 0;
 
-    this.guestService.updateGuest(guest).subscribe();
+    this.guestService.updateGuest(guest).subscribe( () => {
+      this.currentStage = RsvpStages.Decline;
+
+    });
     this.clearMatchedResult();
   }
 
@@ -115,12 +122,11 @@ export class RsvpComponent implements OnInit {
 
     guest.confirmedGuests = this.calculateConfirmedGuests(guest);
 
-    this.guestService.updateGuest(guest).subscribe();
-    this.clearMatchedResult();
+    this.guestService.updateGuest(guest).subscribe( () => {
+      this.currentStage = RsvpStages.Confirm;
+    });
 
-    if (this.hardilekTrap) {
-      this.showHardilekTrap = true;
-    }
+    this.clearMatchedResult();
   }
 
   private calculateConfirmedGuests(guest: GuestResponseModel): Number {
@@ -129,6 +135,10 @@ export class RsvpComponent implements OnInit {
     }
 
     return 1;
+  }
+
+  reactivateSearch() {
+    this.currentStage = RsvpStages.Search;
   }
 
 }

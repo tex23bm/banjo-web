@@ -1,7 +1,7 @@
 <div class="item-card border-black-rounded center">
   <h2>RSVP</h2>
 
-  <div *ngIf="possibleMatches === null && matchedResult === null && !showHardilekTrap"
+  <div *ngIf="currentStage === rsvpStages.Search"
     (keyup.enter)="searchForInvitation(guestQuery)">
       <p>Please locate your invitation using your last name and zipcode.</p>
       <p>(if we mailed it to you)*</p>
@@ -22,7 +22,7 @@
       <div>*Although we love your little ones, this is an adult only affair</div>
   </div>
 
-  <div *ngIf="possibleMatches!=null">
+  <div *ngIf="currentStage === rsvpStages.Select">
     <div style="display: block;height: 3em;">
       <div style="display: inline-block; width:90%;">
         <div style="display:block;">Here's some possible matches for your invitation, please click on your response</div>
@@ -40,7 +40,7 @@
     </ul>
   </div>
   
-  <div *ngIf="matchedResult != null">
+  <div *ngIf="currentStage === rsvpStages.Respond">
     <div style="display:block;height:2em;">
         <div style="display:inline-block;">{{matchedResult.name}}</div>
         <div style="display:inline-block;" *ngIf="matchedResult.partner !== null && matchedResult.partner !== ''"> & {{matchedResult.partner}}</div>
@@ -78,8 +78,16 @@
     <div>*Although we love your little ones, this is an adult only affair</div>
   </div>
 
-  <div *ngIf="showHardilekTrap">
-    <h3>{{hardilekMessage}}</h3>
+  <div *ngIf="currentStage === rsvpStages.Confirm">
+    <h3>Thank you for confirming your rsvp! We look forward to celebrating with you on our big day.</h3>
+    <br />
+    <button (click)="reactivateSearch()"> Continue </button>
+  </div>
+
+  <div *ngIf="currentStage === rsvpStages.Decline">
+    <h3>Thank you for taking the time to respond, and we are sorry that you are unable to attend.</h3>
+    <br />
+    <button (click)="reactivateSearch()"> Continue </button>
   </div>
 
 </div>
