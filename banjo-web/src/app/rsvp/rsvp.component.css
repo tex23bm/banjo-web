@@ -5,3 +5,33 @@ li {
     padding: .5em;
     margin: .3em;
 }
+
+.cancel-button {
+    color: black;
+    font-size: 1em;
+}
+
+.confirmed-guests-banner {
+    color: green;
+}
+
+.declined-guests-banner {
+    color: red;
+}
+
+    .confirmed-guests-banner h3, .confirmed-guests-banner i,
+    .declined-guests-banner h3, .declined-guests-banner i{
+        display: inline-block;
+    }
+
+    .confirmed-guests-banner h3,
+    .declined-guests-banner h3
+    {
+        margin-left: .3em;
+    }
+
+    .confirmed-guests-banner i,
+    .declined-guests-banner i{
+        font-size: 1.5em;
+        vertical-align: -.1em;
+    }

@@ -39,6 +39,24 @@
       </li>
     </ul>
   </div>
+
+  <div *ngIf="currentStage === rsvpStages.ShowResponse">
+    <h3>Current Response</h3>
+    <i (click)="clearMatchedResult()" style="float: right;margin-right: 1em;" class="fas fa-times cancel-button"></i>
+    <div *ngIf="matchedResult.confirmedGuests > 0" class="confirmed-guests-banner">
+        <i class="far fa-check-circle" ></i>
+        <h3 >{{matchedResult.confirmedGuests}} Guest{{matchedResult.confirmedGuests > 1 ? 's' : ''}} Confirmed</h3>
+      </div>
+    <div *ngIf="matchedResult.confirmedGuests === 0" class="declined-guests-banner">
+        <i class="far fa-times-circle"></i>
+        <h3 >Unable to Attend</h3>
+    </div>
+    <div style="display:block;height:2em;">
+        <div style="display:inline-block;">{{matchedResult.name}}</div>
+        <div style="display:inline-block;" *ngIf="matchedResult.partner !== null && matchedResult.partner !== ''"> & {{matchedResult.partner}}</div>
+    </div>
+    <button (click)="showResponseEdit(matchedResult)"> Update Response</button>
+  </div>
   
   <div *ngIf="currentStage === rsvpStages.Respond">
     <div style="display:block;height:2em;">
