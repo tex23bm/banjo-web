@@ -61,6 +61,7 @@ export class RsvpComponent implements OnInit {
         if (matches.length === 0) {
           this.guestSearchMessage = 'Could not find any matches. Please try another query.';
           this.possibleMatches = null;
+          return;
         }
 
         this.currentStage = RsvpStages.Select;
