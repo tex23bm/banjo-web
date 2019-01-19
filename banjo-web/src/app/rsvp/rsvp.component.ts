@@ -85,6 +85,21 @@ export class RsvpComponent implements OnInit {
     this.clearSearchQuery();
     this.clearSearchResults();
     this.matchedResult = match;
+
+    if (match.confirmedGuests !== null) {
+      this.showCurrentConfirmationStatus(match);
+    } else {
+      this.showResponseEdit(match);
+    }
+  }
+
+  showCurrentConfirmationStatus(match: GuestResponseModel) {
+    this.matchedResult = match;
+    this.currentStage = RsvpStages.ShowResponse;
+  }
+
+  showResponseEdit(match: GuestResponseModel) {
+    this.matchedResult = match;
     this.currentStage = RsvpStages.Respond;
   }
 
@@ -114,6 +129,11 @@ export class RsvpComponent implements OnInit {
     this.guestValidationMessage = null;
     return true;
   }
+
+  editResponse(matchedResult: GuestResponseModel) {
+    this.setMatchedResult(matchedResult);
+  }
+
 
   confirmInvitation(guest: GuestResponseModel) {
 
