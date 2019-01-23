@@ -16,7 +16,7 @@
         <br/>
       </div>
     
-      <button (click)="searchForInvitation(guestQuery)">Search</button>
+      <input (click)="searchForInvitation(guestQuery)" type="button" value="Search" />
       <br/>
 
       <div>*Although we love your little ones, this is an adult only affair</div>
@@ -55,7 +55,7 @@
         <div style="display:inline-block;">{{matchedResult.name}}</div>
         <div style="display:inline-block;" *ngIf="matchedResult.partner !== null && matchedResult.partner !== ''"> & {{matchedResult.partner}}</div>
     </div>
-    <button (click)="showResponseEdit(matchedResult)"> Update Response</button>
+    <input (click)="showResponseEdit(matchedResult)" type="button" value="Update Response" />
   </div>
   
   <div *ngIf="currentStage === rsvpStages.Respond">
@@ -88,8 +88,8 @@
       {{guestValidationMessage}}
       <br/>
     </div>
-    <button (click)="confirmInvitation(matchedResult)"> Confirm </button>
-    <button (click)="declineInvitation(matchedResult)"> Regretfully Decline </button>
+    <input (click)="confirmInvitation(matchedResult)" type="button" value="Confirm"/>
+    <input (click)="declineInvitation(matchedResult)" type="button" value="Regretfully Decline" />
 
     <br/>
 
@@ -99,13 +99,13 @@
   <div *ngIf="currentStage === rsvpStages.Confirm">
     <h3>Thank you for confirming your rsvp! We look forward to celebrating with you on our big day.</h3>
     <br />
-    <button (click)="reactivateSearch()"> Continue </button>
+    <input (click)="reactivateSearch()" value="Continue" type="button" />
   </div>
 
   <div *ngIf="currentStage === rsvpStages.Decline">
     <h3>Thank you for taking the time to respond, and we are sorry that you are unable to attend.</h3>
     <br />
-    <button (click)="reactivateSearch()"> Continue </button>
+    <input (click)="reactivateSearch()" value="Continue" type="button" />
   </div>
 
 </div>
