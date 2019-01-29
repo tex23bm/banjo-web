@@ -18,7 +18,6 @@ export class GuestService {
   constructor(
     private http: HttpClient,
   ) {
-    console.log(this.baseUrl);
   }
 
   searchForGuests(query: GuestSearchQueryModel): Observable<GuestResponseModel[]> {

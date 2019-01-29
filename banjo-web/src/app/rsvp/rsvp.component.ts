@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GuestService } from '../services/guest.service';
 import { GuestSearchQueryModel } from '../data/guest-search-query-model';
-import { queryRefresh } from '@angular/core/src/render3/query';
 import { GuestResponseModel } from '../data/guest-response-model';
 import { RsvpStages } from '../data/constants/rsvp-stages.enum';
-import { Type } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-rsvp',
@@ -22,6 +20,8 @@ export class RsvpComponent implements OnInit {
   matchedResult: GuestResponseModel = null;
   guestValidationMessage: String = null;
   guestSearchMessage: String = null;
+
+  ignoreTouch = false;
 
   rsvpStages: any = RsvpStages;
   currentStage: RsvpStages = RsvpStages.Search;
@@ -49,7 +49,25 @@ export class RsvpComponent implements OnInit {
     return true;
   }
 
-  searchForInvitation(query: GuestSearchQueryModel) {
+  private isAllowedSource(source?: String): Boolean {
+    if (source !== undefined) {
+      if (source === 'click') {
+        this.ignoreTouch = true;
+      }
+
+      if (this.ignoreTouch && source === 'touch') {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  searchForInvitation(query: GuestSearchQueryModel, source?: String) {
+
+    if (!this.isAllowedSource(source)) {
+      return;
+    }
 
     if (!this.validateGuestSearch(query)) {
       return;
@@ -81,7 +99,11 @@ export class RsvpComponent implements OnInit {
     this.currentStage = RsvpStages.Search;
   }
 
-  setMatchedResult(match: GuestResponseModel) {
+  setMatchedResult(match: GuestResponseModel, source?: String) {
+    if (!this.isAllowedSource(source)) {
+      return;
+    }
+
     this.clearSearchQuery();
     this.clearSearchResults();
     this.matchedResult = match;
@@ -98,7 +120,11 @@ export class RsvpComponent implements OnInit {
     this.currentStage = RsvpStages.ShowResponse;
   }
 
-  showResponseEdit(match: GuestResponseModel) {
+  showResponseEdit(match: GuestResponseModel, source?: String) {
+    if (!this.isAllowedSource(source)) {
+      return;
+    }
+
     this.matchedResult = match;
     this.currentStage = RsvpStages.Respond;
   }
@@ -108,7 +134,10 @@ export class RsvpComponent implements OnInit {
     this.currentStage = RsvpStages.Search;
   }
 
-  declineInvitation(guest: GuestResponseModel) {
+  declineInvitation(guest: GuestResponseModel, source?: String) {
+    if (!this.isAllowedSource(source)) {
+      return;
+    }
     guest.confirmedGuests = 0;
 
     this.guestService.updateGuest(guest).subscribe( () => {
@@ -135,7 +164,10 @@ export class RsvpComponent implements OnInit {
   }
 
 
-  confirmInvitation(guest: GuestResponseModel) {
+  confirmInvitation(guest: GuestResponseModel, source?: String) {
+    if (!this.isAllowedSource(source)) {
+      return;
+    }
 
     if (!this.validateGuest(guest)) {
       return;

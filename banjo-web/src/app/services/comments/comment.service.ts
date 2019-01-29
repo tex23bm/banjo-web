@@ -18,7 +18,6 @@ export class CommentService {
   constructor(
     private http: HttpClient,
   ) {
-    console.log(this.baseUrl);
   }
 
   getComments(): Observable<GuestCommentModel[]> {
