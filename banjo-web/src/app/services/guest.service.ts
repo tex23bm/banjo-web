@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/observable';
-import { of } from 'rxjs/observable/of';
 import { environment } from '../../environments/environment';
 import { GuestSearchQueryModel } from '../data/guest-search-query-model';
 import { GuestResponseModel } from '../data/guest-response-model';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class GuestService {
