@@ -16,7 +16,7 @@
         <br/>
       </div>
     
-      <input (click)="searchForInvitation(guestQuery,'click')" (touchend)="searchForInvitation(guestQuery,'touch')" type="button" value="Search" />
+      <input (click)="searchForInvitation(guestQuery,'click')" (tap)="searchForInvitation(guestQuery,'touch')" type="button" value="Search" />
       <br/>
 
       <div>*Although we love your little ones, this is an adult only affair</div>
@@ -31,7 +31,7 @@
     </div>
     <ul style="display:block;">
       <li *ngFor="let match of possibleMatches">
-        <div (click)="setMatchedResult(match, 'click')" (click)="setMatchedResult(match, 'touch')" >
+        <div (click)="setMatchedResult(match, 'click')" (tap)="setMatchedResult(match, 'touch')" >
             <div style="display:inline-block;">{{match.name}}</div>
             <div style="display:inline-block;" *ngIf="match.partner != null && match.partner !== ''"> & {{match.partner}}</div>
             <div style="display:block" >{{match.address}}</div>
@@ -55,7 +55,7 @@
         <div style="display:inline-block;">{{matchedResult.name}}</div>
         <div style="display:inline-block;" *ngIf="matchedResult.partner !== null && matchedResult.partner !== ''"> & {{matchedResult.partner}}</div>
     </div>
-    <input (click)="showResponseEdit(matchedResult, 'click')" (touchend)="showResponseEdit(matchedResult, 'touch')" type="button" value="Update Response" />
+    <input (click)="showResponseEdit(matchedResult, 'click')" (tap)="showResponseEdit(matchedResult, 'touch')" type="button" value="Update Response" />
   </div>
   
   <div *ngIf="currentStage === rsvpStages.Respond">
@@ -85,9 +85,9 @@
       <br/>
     </div>
     <input (click)="confirmInvitation(matchedResult, 'click')" 
-            (touchend)="confirmInvitation(matchedResult, 'touch')" type="button" value="Confirm"/>
+            (tap)="confirmInvitation(matchedResult, 'touch')" type="button" value="Confirm"/>
     <input (click)="declineInvitation(matchedResult, 'click')" 
-            (touchend)="declineInvitation(matchedResult, 'touch')" type="button" value="Regretfully Decline" />
+            (tap)="declineInvitation(matchedResult, 'touch')" type="button" value="Regretfully Decline" />
 
     <br/>
 
