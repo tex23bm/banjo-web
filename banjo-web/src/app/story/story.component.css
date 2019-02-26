@@ -1,0 +1,44 @@
+h3 {
+    display: block;
+    clear: both;
+}
+
+.image-left {
+    float: left;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+.image-right {
+    float: right;
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
+
+.image-thumbnail {
+    border-radius: 10%;
+    width: 30%;
+    height: auto;
+    max-width: 300px;
+    min-width: 200px;
+}
+
+.image-closer {
+    clear: both;
+    display: block;
+    border-radius: 10%;
+    width: 50%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image-puppies {
+    display: inline-block;
+    padding: .5em;
+    border-radius: 10%;
+    width: 20%;
+    height: auto;
+    max-width: 300px;
+    min-width: 200px;
+}
