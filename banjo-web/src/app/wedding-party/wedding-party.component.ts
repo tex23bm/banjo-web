@@ -29,6 +29,14 @@ export class WeddingPartyComponent implements OnInit {
     { 'name': 'Amber Johnson', 'imagePath': 'wedding-party/amber.jpg', 'altText': 'Amber', 'title': null },
   ];
 
+  chaosCoordinator: WeddingPartyMemberModel =
+  { 'name': 'Caitlyn Mullins', 'imagePath': 'wedding-party/caitlyn.jpg', 'altText': 'Caitlyn',
+    'title': 'Chaos Management Specialist'};
+
+  musician: WeddingPartyMemberModel =
+    { 'name': 'Caleb Price', 'imagePath': 'wedding-party/caleb.jpg', 'altText': 'Caleb',
+      'title': 'Chief Minstrel'};
+
   constructor() { }
 
   ngOnInit() {
